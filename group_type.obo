@@ -1,0 +1,213 @@
+[Term]
+id: taxonomic
+name: Taxonomic Group
+def: organisms belonging to a group with common phylogenetic origin,
+     as defined by an official taxonomy organisation or by
+     a commonly used taxonomy database;
+comment: ideally represents a monophiletic group or organisms,
+     a clade;
+relationship: required_external_link taxonomy_database
+relationship: reccomended_external_link NCBI_taxonomy_database
+relationship: optional_attribute taxonomic_rank ! eg. species, genus, etc
+is_a: biological_classification_group_type
+
+[Typedef]
+id: required_external_link
+name: requires external link
+def: an instance of the term must contain a link to an external
+     resource of the specified type
+
+[Typedef]
+id: reccomended_external_link
+name: reccomended external link
+def: an instance of the term should contain a link to an external
+     resource of the specified type
+comment: used when links of that type are generally available
+
+[Typedef]
+id: desirable_external_link
+name: desirable external link
+def: ideally, an instance of the term contains a link to an external
+     resource of the specified type
+comment: used when links of that type are generally not available
+
+[Typedef]
+id: optional_attribute
+name: optional attribute
+def: an instance of the term should relate to a term (attribute)
+     belonging to the specified attribute type
+
+[Term]
+id: external_resource
+name: External Resource
+def: a source of definitions or information which is maintained
+     and made available by third-parties
+comment: only publicly available resources should be used
+
+[Term]
+id: external_definition
+name: External Definition
+def: a definition given in a document or database mantained and
+     made available by third-parties
+is_a: external_resource
+
+[Term]
+id: external_enumeration
+name: External Enumeration
+def: a list of members of a class, given in a document
+     or database, maintained and made available by third-parties
+is_a: external_resource
+
+[Term]
+id: taxonomy_database
+name: Taxonomy Database
+def: a database, which contain definitions of group of organisms
+     by their biological taxonomic classification
+is_a: external_resource
+
+[Term]
+id: strain_database
+name: Strain Database
+def: a database, containing the names of strains, their availability
+     in strain collections and other relevant information
+is_a: external_resource
+
+[Term]
+id: NCBI_taxonomy_database
+name NCBI Taxonomy Database
+def: the taxonomy database maintained by NCBI
+is_a: taxonomy_database
+
+[Term]
+id: strain
+name: Prokaryotic Strain
+def: prokaryotic organisms which were cultivated in a biological laboratory
+     starting from a common ancestor
+comment: may be assigned or not to a specific taxonomic group; it should
+         be linked to NCBI taxonomy, if the strain itself is included there; to
+         the species, if the strain is assigned to a species, but not included
+         in NCBI taxonomy; to the genus, if the strain is not included in NCBI
+         taxonomy and not assigned to a species, but assigned to a genus
+relationship: reccomended_external_link NCBI_taxonomy_database
+relationship: reccomended_external_link strain_database
+is_a: biological_classification_group_type
+
+[Term]
+id: paraphyletic
+name: Paraphyletic Group
+def: named group of strains or species or other taxa, which which do not
+     represent a monophyetic group
+comment: usually historically a taxonomic group,
+        but not recognized anymore as such
+relationship: reccomended_external_link external_definition
+relationship: desirable_external_link external_enumeration
+is_a: biological_classification_group_type
+
+[Term]
+id: biological_classification_group_type
+name: Biological Classification Group Type
+def: groups of organisms by a currently or historically suspected
+     phylogenetic relationship
+is_a: group_types_category
+
+[Term]
+id: group_types_category
+name: Group Types Category
+def: higher level definition, which includes one or multiple types of groups
+     or biological organisms
+is_a: group_types_category
+
+[Term]
+id: phenotype_group_type
+name: Phenotype Group Type
+def: groups of organisms by one particular aspect of their phenotype
+is_a: group_types_category
+
+[Term]
+id: location_group_type
+name: Location Group Type
+def: groups of organisms by the location where their live
+is_a: group_types_category
+
+[Term]
+id: geographical
+name: Group of Organisms by Geographical Location
+def: organisms living in a specific named geographical area, of any kind and size
+relationship: reccomended_external_link external_definition
+relationship: desirable_external_link external_enumeration
+is_a: location_group_type
+
+[Term]
+id: habitat
+name: Group of Organisms by Habitat
+def: organisms living in a specific kind of environment
+relationship: reccomended_external_link external_definition
+relationship: desirable_external_link external_enumeration
+is_a: location_group_type
+
+[Term]
+id: nutrients_availability_requirement
+name: Group of Organisms by Requirement of Nutrients Availability
+def: organisms which require a given quantitive level of availability of
+     nutrients
+comment: e.g. oligotrophic, copiotrophic
+is_a: phenotype_group_type
+
+[Term]
+id: trophic_strategy
+name: Group of Organisms by Trophic Strategy
+def: organisms which share the same strategy for obtaining energy and/or
+     organic compounds
+is_a: phenotype_group_type
+
+[Term]
+id: cultiviability
+name: Group of Organisms by Cultiavibility
+def: organisms by the ability to cultivate them in a laboratory
+is_a: phenotype_group_type
+
+[Term]
+id: resultive_disease_symptom
+name: Group or Organisms by Resultive Disease or Symptom
+def: organisms classification by the ability to cultivate them in a laboratory
+is_a: phenotype_group_type
+
+[Term]
+id: habitat_requirement_type
+is_a: phenotype_group_type
+
+[Term]
+id: specific_nutrient_availability
+is_a: habitat_requirement_type
+
+[Term]
+id: relationship_to_O2
+is_a: habitat_requirement_type
+
+[Term]
+id: salinity_requirement
+is_a: habitat_requirement_type
+
+[Term]
+id: pH_requirement
+is_a: habitat_requirement_type
+
+[Term]
+id: biological_interaction
+is_a: phenotype_group_type
+
+[Term]
+id: temperature_requirement
+is_a: habitat_requirement_type
+
+[Term]
+id: taxis
+is_a: phenotype_group_type
+
+[Term]
+id: metabolic
+is_a: phenotype_group_type
+
+[Term]
+id: gram_stain
+is_a: phenotype_group_type
