@@ -1,121 +1,172 @@
+format-version: 1.2
+
 [Typedef]
-id: required_external_link
-name: requires external link
+id: has_external_link_to
+name: has external link to
 def: an instance of the term must contain a link to an external
      resource of the specified type []
 
 [Typedef]
-id: reccomended_external_link
-name: reccomended external link
+id: usually_has_external_link_to
+name: usually has external link to
 def: an instance of the term should contain a link to an external
      resource of the specified type []
 comment: used when links of that type are generally available
 
 [Typedef]
-id: desirable_external_link
-name: desirable external link
+id: ideally_has_external_link_to
+name: ideally has external link to
 def: ideally, an instance of the term contains a link to an external
      resource of the specified type []
 comment: used when links of that type are generally not available
 
 [Typedef]
-id: optional_attribute
-name: optional attribute
-def: an instance of the term should relate to a term (attribute)
-     belonging to the specified attribute type []
+id: has_optional_type
+name: has optional type
+def: instances of the subject term can be classified as of type O, where
+     O is an instance of the object term, but this classication system
+     does not apply in all cases
+
+[Typedef]
+id: defined_by
+name: defined by
+def: instances of the subject term are defined by the mean
+     of instances of the object term
 
 [Term]
-id: external_resource
-name: External Resource
+id: M0001
+name: logical_expression
+namespace: metadata
+def: an expression combining different terms with logical operators []
+
+[Term]
+id: M0002
+name: group_combination
+namespace: metadata
+def: a combination of multiple organism groups, expressed in terms
+     or a logical expression, combining two or more other groups []
+comment: avoiding nested group combinations can simplify applications
+is_a: M0001 ! logical_expression
+
+[Term]
+id: M0003
+name: external_resource
+namespace: metadata
 def: a source of definitions or information which is maintained
      and made available by third-parties []
 comment: only publicly available resources should be used
 
 [Term]
-id: external_definition
-name: External Definition
+id: M0004
+name: external_definition
+namespace: metadata
 def: a definition given in a document or database mantained and
      made available by third-parties []
-is_a: external_resource
+is_a: M0003 ! external_resource
 
 [Term]
-id: external_enumeration
-name: External Enumeration
+id: M0005
+name: external_enumeration
+namespace: metadata
 def: a list of members of a class, given in a document
      or database, maintained and made available by third-parties []
-is_a: external_resource
+is_a: M0003 ! external_resource
 
 [Term]
-id: taxonomy_database
-name: Taxonomy Database
+id: M0006
+name: taxonomy_database
+namespace: metadata
 def: a database, which contain definitions of group of organisms
      by their biological taxonomic classification []
-is_a: external_resource
+is_a: M0003 ! external_resource
 
 [Term]
-id: strain_database
-name: Strain Database
+id: M0007
+name: strain_database
+namespace: metadata
 def: a database, containing the names of strains, their availability
      in strain collections and other relevant information []
-is_a: external_resource
+is_a: M0003 ! external_resource
 
 [Term]
-id: NCBI_taxonomy_database
-name NCBI Taxonomy Database
+id: M0008
+name: NCBI_taxonomy_database
+namespace: metadata
 def: the taxonomy database maintained by NCBI []
-is_a: taxonomy_database
+is_a: M0006 ! taxonomy_database
 
 [Term]
-id: group_types_category
-name: Group Types Category
+id: M0009
+name: taxonomic_rank
+namespace: metadata
+def: name of one of the hierarchical levels of a taxonomic classification
+comment: example: species, genus, family;
+         not all taxonomic group have a specific rank
+
+[Term]
+id: C0001
+name: group_types_category
+namespace: group_type_definition_hierarchy
 def: higher level definition, which includes one or multiple types of groups
      or biological organisms []
-is_a: group_types_category
 
 [Term]
-id: habitat_requirement_type
-name: Group of Organisms by Habitat Requirement
+id: C0002
+name: habitat_requirement_type
+namespace: group_type_definition_hierarchy
 def: organisms classification by required conditions in their habitats []
-is_a: group_types_category
+is_a: C0001 ! group_types_category
 
 [Term]
-id: phenotype_group_type
-name: Phenotype Group Type
+id: C0003
+name: phenotype_group_type
+namespace: group_type_definition_hierarchy
 def: groups of organisms by one particular aspect of their phenotype []
 comment: this does not include groups by characteristics of the habitat such
          as temperature, salinity, pH, etc, which are included instead
-         in habitat_requirement_type
-is_a: group_types_category
+         in habitat_requirement_type (C0002)
+is_a: C0001 ! group_types_category
 
 [Term]
-id: location_group_type
-name: Location Group Type
+id: C0004
+name: location_group_type
+namespace: group_type_definition_hierarchy
 def: groups of organisms by the location where their live []
-is_a: group_types_category
+is_a: C0001 ! group_types_category
 
 [Term]
-id: biological_classification_group_type
-name: Biological Classification Group Type
+id: C0005
+name: compound_group_type
+namespace: group_type_definition_hierarchy
+def: definition of groups of organisms involving multiple other groups []
+is_a: C0001 ! group_types_category
+
+[Term]
+id: C0006
+name: phylogenetic_group_type
+namespace: group_type_definition_hierarchy
 def: groups of organisms by a currently or historically suspected
      phylogenetic relationship []
-is_a: group_types_category
+is_a: C0001 ! group_types_category
 
 [Term]
-id: taxonomic
-name: Taxonomic Group
+id: G0001
+name: taxonomic
+namespace: group_type
 def: organisms belonging to a group with common phylogenetic origin,
      as defined by an official taxonomy organisation or by
      a commonly used taxonomy database []
 comment: ideally represents a monophiletic group or organisms,
-     a clade;
-relationship: required_external_link taxonomy_database
-relationship: reccomended_external_link NCBI_taxonomy_database
-relationship: optional_attribute taxonomic_rank ! eg. species, genus, etc
-is_a: biological_classification_group_type
+     a clade
+relationship: has_external_link_to M0006 {cardinality:1} ! taxonomy_database
+              ! recommended: M0008 ! NCBI_taxonomy_database
+relationship: has_optional_type M0009 ! taxonomic_rank
+is_a: C0006 ! phylogenetic_group_type
 
 [Term]
-id: strain
-name: Prokaryotic Strain
+id: G0002
+name: strain
+namespace: group_type
 def: prokaryotic organisms which were cultivated in a biological laboratory
      starting from a common ancestor []
 comment: may be assigned or not to a specific taxonomic group; it should
@@ -123,117 +174,142 @@ comment: may be assigned or not to a specific taxonomic group; it should
          the species, if the strain is assigned to a species, but not included
          in NCBI taxonomy; to the genus, if the strain is not included in NCBI
          taxonomy and not assigned to a species, but assigned to a genus
-relationship: reccomended_external_link NCBI_taxonomy_database
-relationship: reccomended_external_link strain_database
-is_a: biological_classification_group_type
+relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
+relationship: usually_has_external_link_to M0007 ! strain_database
+is_a: C0006 ! phylogenetic_group_type
 
 [Term]
-id: paraphyletic
-name: Paraphyletic Group
+id: G0003
+name: paraphyletic
+namespace: group_type
 def: named group of strains or species or other taxa, which which do not
      represent a monophyetic group []
 comment: usually historically a taxonomic group,
         but not recognized anymore as such
-relationship: reccomended_external_link external_definition
-relationship: desirable_external_link external_enumeration
-is_a: biological_classification_group_type
+relationship: usually_has_external_link_to M0004 ! external_definition
+relationship: ideally_has_external_link_to M0005 ! external_enumeration
+is_a: C0006 ! phylogenetic_group_type
 
 [Term]
-id: geographical
-name: Group of Organisms by Geographical Location
+id: L0001
+name: geographical
+namespace: group_type
 def: organisms living in a specific named geographical area,
      of any kind and size []
-relationship: reccomended_external_link external_definition
-relationship: desirable_external_link external_enumeration
-is_a: location_group_type
+relationship: usually_has_external_link_to M0004 ! external_definition
+relationship: ideally_has_external_link_to M0005 ! external_enumeration
+is_a: C0004 ! location_group_type
 
 [Term]
-id: habitat
-name: Group of Organisms by Habitat
+id: L0002
+name: habitat
+namespace: group_type
 def: organisms living in a specific kind of environment []
-relationship: reccomended_external_link external_definition
-relationship: desirable_external_link external_enumeration
-is_a: location_group_type
+relationship: usually_has_external_link_to M0004 ! external_definition
+relationship: ideally_has_external_link_to M0005 ! external_enumeration
+is_a: C0004 ! location_group_type
 
 [Term]
-id: nutrients_availability_requirement
-name: Group of Organisms by Requirement of Nutrients Availability
+id: H0001
+name: nutrients_availability_requirement
+namespace: group_type
 def: organisms which require a given quantitive level of availability of
      nutrients []
 comment: e.g. oligotrophic, copiotrophic
-is_a: habitat_requirement_type
+is_a: C0002 ! habitat_requirement_type
 
 [Term]
-id: specific_nutrient_availability
-name: Group of Organisms by Availability of a Specific Nutrient
+id: H0002
+name: specific_nutrient_availability
+namespace: group_type
 def: organisms by their requirement of availability of a specific nutrient []
-is_a: habitat_requirement_type
+is_a: C0002 ! habitat_requirement_type
 
 [Term]
-id: relationship_to_O2
-name: Group of Organisms by Relationship to Molecular Oxygen
+id: H0003
+name: O2_requirement
+namespace: group_type
 def: organisms by requirement of molecular oxygen level in their habitat []
-is_a: habitat_requirement_type
+is_a: C0002 ! habitat_requirement_type
 
 [Term]
-id: salinity_requirement
-name: Group of Organisms by Salinity Requirement
+id: H0004
+name: salinity_requirement
+namespace: group_type
 def: organisms by requirement of a salinity level in their habitats []
-is_a: habitat_requirement_type
+is_a: C0002 ! habitat_requirement_type
 
 [Term]
-id: pH_requirement
-name: Group of Organisms by pH Requirement
+id: H0005
+name: pH_requirement
+namespace: group_type
 def: organisms by requirement of a pH range in their habitats []
-is_a: habitat_requirement_type
+is_a: C0002 ! habitat_requirement_type
 
 [Term]
-id: temperature_requirement
-name: Group of Organisms by Temperature Requirement
+id: H0006
+name: temperature_requirement
+namespace: group_type
 def: organisms by requirement of a temperature range in their habitats []
-is_a: habitat_requirement_type
+is_a: C0002 ! habitat_requirement_type
 
 [Term]
-id: biological_interaction
-name: Group of Organisms by Biological Interaction
+id: P0001
+name: biological_interaction
+namespace: group_type
 def: organisms by kind of interaction (or lack thereof) with other organisms []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
 
 [Term]
-id: taxis
-name: Group of Organisms by Taxis
+id: P0002
+name: taxis
+namespace: group_type
 def: organisms by their tendency to move or orient towards or against
      a given stimulus []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
 
 [Term]
-id: metabolic
-name: Group of Organisms by Metabolic Trait
+id: P0003
+name: metabolic
+namespace: group_type
 def: organisms sharing a specific trait of their metabolism []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
 
 [Term]
-id: gram_stain
-name: Group of Organisms by Gram Stain
+id: P0004
+name: gram_stain
+namespace: group_type
 def: organisms according to their reactivity to Gram stain []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
 
 [Term]
-id: trophic_strategy
-name: Group of Organisms by Trophic Strategy
+id: P0005
+name: trophic_strategy
+namespace: group_type
 def: organisms which share the same strategy for obtaining energy and/or
      organic compounds []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
 
 [Term]
-id: cultiviability
-name: Group of Organisms by Cultiavibility
+id: P0006
+name: cultiviability
+namespace: group_type
 def: organisms by the ability to cultivate them in a laboratory []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
 
 [Term]
-id: resultive_disease_symptom
-name: Group of Organisms by Resultive Disease or Symptom
+id: P0007
+name: resultive_disease_symptom
+namespace: group_type
 def: patogenic organisms by the kind of disease or symptom that they
      cause (or lack thereof) []
-is_a: phenotype_group_type
+is_a: C0003 ! phenotype_group_type
+
+[Term]
+id: X0001
+name: combined
+namespace: group_type
+def: organisms which share or lack a number of conditions, which are described
+     in other terms, and hereby combined by logical operators []
+is_a: C0005 ! compound_group_type
+relationship: defined_by M0002 ! group_combination
