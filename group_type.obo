@@ -179,6 +179,20 @@ relationship: usually_has_external_link_to M0007 ! strain_database
 is_a: GC0006 ! phylogenetic_group_type
 
 [Term]
+id: GG0004
+name: metagenome_assembled_genome
+namespace: group_type
+def: organism known only because its genome was assembled from a metagenome
+comment: may be assigned or not to a specific taxonomic group; it should
+         be linked to NCBI taxonomy, if the strain itself is included there; to
+         the species, if the strain is assigned to a species, but not included
+         in NCBI taxonomy; to the genus, if the strain is not included in NCBI
+         taxonomy and not assigned to a species, but assigned to a genus
+relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
+relationship: usually_has_external_link_to M0007 ! strain_database
+is_a: GC0006 ! phylogenetic_group_type
+
+[Term]
 id: GG0003
 name: paraphyletic
 namespace: group_type
