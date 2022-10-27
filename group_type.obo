@@ -37,16 +37,32 @@ def: instances of the subject term are defined by the mean
 id: M0001
 name: logical_expression
 namespace: metadata
-def: an expression combining different terms with logical operators []
+def: an expression involving one or muliple terms, modified or joined by
+     logical operators []
+
+[Term]
+id: M0010
+name: groups_logical_expression
+namespace: metadata
+def: a logical expression whose terms are groups of organisms []
+comment: avoiding nested group combinations can simplify applications
+is_a: M0001 ! logical_expression
 
 [Term]
 id: M0002
-name: group_combination
+name: group_combination_expression
 namespace: metadata
 def: a combination of multiple organism groups, expressed in terms
      or a logical expression, combining two or more other groups []
-comment: avoiding nested group combinations can simplify applications
-is_a: M0001 ! logical_expression
+is_a: M0010 ! groups_logical_expression
+
+[Term]
+id: M0011
+name: group_negation_expression
+namespace: metadata
+def: a group logical expression, containing only the negation symbol
+     and a single term (group) []
+is_a: M0010 ! groups_logical_expression
 
 [Term]
 id: M0003
@@ -136,9 +152,10 @@ is_a: GC0001 ! group_types_category
 
 [Term]
 id: GC0005
-name: compound_group_type
+name: derived_group_type
 namespace: group_types_category
-def: definition of groups of organisms involving multiple other groups []
+def: definition of groups of organisms derived by the definition of one or
+     multiple other groups []
 is_a: GC0001 ! group_types_category
 
 [Term]
@@ -325,5 +342,13 @@ name: combined
 namespace: group_type
 def: organisms which share or lack a number of conditions, which are described
      in other terms, and hereby combined by logical operators []
-is_a: GC0005 ! compound_group_type
-relationship: defined_by M0002 ! group_combination
+is_a: GC0005 ! derived_group_type
+relationship: defined_by M0002 ! group_combination_expression
+
+[Term]
+id: GX0001
+name: negation
+namespace: group_type
+def: organisms which is not an instance of a specified group []
+is_a: GC0005 ! derived_group_type
+relationship: defined_by M0011 ! group_negation_expression
