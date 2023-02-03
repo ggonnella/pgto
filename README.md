@@ -50,7 +50,7 @@ Furthemore, some relationships are defined:
 - relationship expressing the requirement of external resources
 - relationship expressing the existance of optional attributes.
 
-# Defining a new group type
+## Defining a new group type
 
 When, in an application, a group of prokaryotic organisms is defined,
 first all existing group types under the
@@ -64,3 +64,12 @@ In this case, the best fitting category must be chosen for the group
 type, among those in the namespace ``group types category``.
 If no category fits, then one can be defined and added to the ontology
 (this should be rarely the case).
+
+## Acknowledgements
+
+This ontology has been created in context of the
+DFG project GO 3192/1-1 “Automated
+characterization of microbial genomes and metagenomes by collection and
+verification of association rules”. The funders had no role in
+study design, data collection
+and analysis.
