@@ -13,8 +13,8 @@ such groups, by defining possible group types and classifying them in categories
 
 ## Ontology files
 
-The ontology is defined using the OBO format and consists of a single file,
-(``group\_types.obo``).
+The ontology is defined using the OBO format and consists of a single file
+(``group_types.obo``).
 
 ## Structure and contents
 
