@@ -31,14 +31,14 @@ def: instances of the subject term can be classified as of type O, where
 id: defined_by
 name: defined by
 def: instances of the subject term are defined by the mean
-     of instances of the object term
+     of instances of the object term []
 
 [Term]
 id: M0001
 name: logical_expression
 namespace: metadata
-def: an expression involving one or muliple terms, modified or joined by
-     logical operators []
+def: an expression involving one or muliple terms, the set operators
+     for intersection (and), union (or), and inversion (not) []
 
 [Term]
 id: M0010
@@ -50,7 +50,7 @@ is_a: M0001 ! logical_expression
 
 [Term]
 id: M0002
-name: group_combination_expression
+name: groups_combination_expression
 namespace: metadata
 def: a combination of multiple organism groups, expressed in terms
      or a logical expression, combining two or more other groups []
@@ -58,7 +58,7 @@ is_a: M0010 ! groups_logical_expression
 
 [Term]
 id: M0011
-name: group_negation_expression
+name: group_inversion_expression
 namespace: metadata
 def: a group logical expression, containing only the negation symbol
      and a single term (group) []
@@ -98,7 +98,7 @@ is_a: M0003 ! external_resource
 
 [Term]
 id: M0007
-name: strain_database
+name: strains_database
 namespace: metadata
 def: a database, containing the names of strains, their availability
      in strain collections and other relevant information []
@@ -162,7 +162,7 @@ is_a: GC0001 ! group_types_category
 id: GC0006
 name: phylogenetic_group_type
 namespace: group_types_category
-def: groups of organisms by a currently or historically suspected
+def: groups of organisms by a currently or historically inferred
      phylogenetic relationship []
 is_a: GC0001 ! group_types_category
 
@@ -192,12 +192,12 @@ comment: may be assigned or not to a specific taxonomic group; it should
          in NCBI taxonomy; to the genus, if the strain is not included in NCBI
          taxonomy and not assigned to a species, but assigned to a genus
 relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
-relationship: usually_has_external_link_to M0007 ! strain_database
+relationship: usually_has_external_link_to M0007 ! strains_database
 is_a: GC0006 ! phylogenetic_group_type
 
 [Term]
 id: GG0004
-name: metagenome_assembled_genome
+name: microbiome
 namespace: group_type
 def: organism known only because its genome was assembled from a metagenome
 comment: may be assigned or not to a specific taxonomic group; it should
@@ -206,8 +206,8 @@ comment: may be assigned or not to a specific taxonomic group; it should
          in NCBI taxonomy; to the genus, if the strain is not included in NCBI
          taxonomy and not assigned to a species, but assigned to a genus
 relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
-relationship: usually_has_external_link_to M0007 ! strain_database
-is_a: GC0006 ! phylogenetic_group_type
+relationship: usually_has_external_link_to M0007 ! strains_database
+is_a: GC0006 ! location
 
 [Term]
 id: GG0003
@@ -242,7 +242,7 @@ is_a: GC0004 ! location_group_type
 
 [Term]
 id: GH0001
-name: nutrients_availability_requirement
+name: nutrients_level_requirement
 namespace: group_type
 def: organisms which require a given quantitive level of availability of
      nutrients []
@@ -338,17 +338,18 @@ is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GX0001
-name: combined
+name: combined_group
 namespace: group_type
 def: organisms which share or lack a number of conditions, which are described
-     in other terms, and hereby combined by logical operators []
+     in other terms, and hereby combined by the set operations union and
+     intersection []
 is_a: GC0005 ! derived_group_type
-relationship: defined_by M0002 ! group_combination_expression
+relationship: defined_by M0002 ! groups_combination_expression
 
 [Term]
-id: GX0001
-name: negation
+id: GX0002
+name: inverted_group
 namespace: group_type
 def: organisms which is not an instance of a specified group []
 is_a: GC0005 ! derived_group_type
-relationship: defined_by M0011 ! group_negation_expression
+relationship: defined_by M0011 ! group_inversion_expression
