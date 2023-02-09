@@ -197,7 +197,7 @@ is_a: GC0006 ! phylogenetic_group_type
 
 [Term]
 id: GG0004
-name: microbiome
+name: metagenomic_assembled
 namespace: group_type
 def: organism known only because its genome was assembled from a metagenome
 comment: may be assigned or not to a specific taxonomic group; it should
