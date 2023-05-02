@@ -2,13 +2,13 @@ format-version: 1.2
 
 [Term]
 id: GR0000
-name: group_types_category
+name: group types category
 namespace: hierarchy_root
 def: "high level category of types of groups of organisms" []
 
 [Term]
 id: GT0000
-name: taxonomic_group_type
+name: taxonomic group type
 namespace: group_types_category
 def: "category of types of groups of organisms,
       defined by membership to a taxonomic unit" []
@@ -16,7 +16,7 @@ is_a: GR0000 ! group_types_category
 
 [Term]
 id: GT1000
-name: strain_level_group
+name: strain-level group
 namespace: group_types_category
 def: "group of organisms deriving from the same culture or isolate,
  or another group of phylogenetically related organisms,
@@ -27,13 +27,15 @@ is_a: GT0000 ! taxonomic_group_type
 id: GT1001
 name: strain
 namespace: group_type
+property_value: EGC_label strain
 def: "group of organisms with high level of genetic identity,
       deriving from the same culture or isolate" []
 is_a: GT1000 ! strain_level_group
 
 [Term]
 id: GT1002
-name: metagenome_assembled_genome_group
+name: metagenome assembled genome group
+property_value: EGC_label metagenome_assembled
 namespace: group_type
 def: "group of organisms with high level of genetic identity (similar to those
       of single strains), from which only the genome is known as it was derived
@@ -42,7 +44,7 @@ is_a: GT1000 ! strain_level_group
 
 [Term]
 id: GT2000
-name: group_of_strains
+name: group of strains
 namespace: group_types_category
 def: "group of organisms comprising multiple strains, either phylogenetically
       related or traditionally seen as a unit" []
@@ -51,6 +53,7 @@ is_a: GT0000 ! taxonomic_group_type
 [Term]
 id: GT2001
 name: clade
+property_value: EGC_label taxonomic
 namespace: group_type
 def: "named group of taxa,
       comprising one or multiple strains, including
@@ -60,7 +63,8 @@ is_a: GT2000 ! group_of_strains
 
 [Term]
 id: GT2002
-name: paraphyletic_group
+name: paraphyletic group
+property_value: EGC_label paraphyletic
 namespace: group_type
 def: "named group of taxa,
       comprising multiple strains, and not including
@@ -70,7 +74,7 @@ is_a: GT2000 ! group_of_strains
 
 [Term]
 id: GH0000
-name: habitat_group_type
+name: habitat group type
 namespace: group_types_category
 def: "category of types of groups of organisms,
       defined by the habitat in which they live" []
@@ -78,14 +82,16 @@ is_a: GR0000 ! group_types_category
 
 [Term]
 id: GH1100
-name: named_habitat_group
+name: named habitat group
+property_value: EGC_label habitat
 namespace: group_type
 def: "group of organisms living in a specific, named, kind of environment" []
 is_a: GH0000 ! habitat_group_type
 
 [Term]
 id: GH1101
-name: host_anatomic_feature_group
+name: host anatomic feature group
+property_value: EGC_label host_anatomic_feature
 namespace: group_type
 def: "group of organisms living in a named anatomic feature of a host
       organism" []
@@ -93,7 +99,7 @@ is_a: GH1100 ! named_habitat_group
 
 [Term]
 id: GH2000
-name: environmental_parameter_group
+name: environmental parameter group
 namespace: group_types_category
 def: "group of organisms characterized by their preference or requirement of a
       given level of a given environmental parameter" []
@@ -101,7 +107,7 @@ is_a: GH0000 ! habitat_group_type
 
 [Term]
 id: GH2100
-name: nutritional_parameter_group
+name: nutritional parameter group
 namespace: group_types_category
 def: "group of organisms which prefer or require a given general level of
       nutrients, or level of a specific nutrient" []
@@ -109,22 +115,24 @@ is_a: GH2000 ! environmental_parameter_group
 
 [Term]
 id: GH2101
-name: nutrients_level_requirement_group
+name: nutrients level requirement group
 namespace: group_type
+property_value: EGC_label nutrients_level_requirement
 def: "group of organisms which require a given general level of availability of
      nutrients" []
 is_a: GH2100 ! nutritional_parameter_group
 
 [Term]
 id: GH2102
-name: specific_nutrient_requirement_group
+name: specific nutrient requirement group
+property_value: EGC_label specific_nutrient_availability
 namespace: group_type
 def: "group of organisms which require a specific nutrient" []
 is_a: GH2100 ! nutritional_parameter_group
 
 [Term]
 id: GH2200
-name: physical_chemical_parameter_group
+name: physical chemical parameter group
 namespace: group_types_category
 def: "group of organisms which prefer or require a given level of
       a physical-chemical property of the environment" []
@@ -132,42 +140,47 @@ is_a: GH2000 ! environmental_parameter_group
 
 [Term]
 id: GH2201
-name: O2_requirement_group
+name: O2 requirement group
+property_value: EGC_label O2_requirement
 namespace: group_type
 def: "organisms by requirement of molecular oxygen level in their habitat" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH2202
-name: salinity_requirement_group
+name: salinity requirement group
+property_value: EGC_label salinity_requirement
 namespace: group_type
 def: "organisms by requirement of a salinity level in their habitats" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH2203
-name: pH_requirement_group
+name: pH requirement group
+property_value: EGC_label pH_requirement
 namespace: group_type
 def: "organisms by requirement of a pH range in their habitats" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH2204
-name: temperature_requirement_group
+name: temperature requirement group
+property_value: EGC_label temperature_requirement
 namespace: group_type
 def: "organisms by requirement of a temperature range in their habitats" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH3000
-name: cultiviability_group
+name: cultiviability group
+property_value: EGC_label cultiviability
 namespace: group_type
 def: "organisms by the ability to grow under laboratory conditions" []
 is_a: GH0000 ! habitat_group_type
 
 [Term]
 id: GP0000
-name: phenotype_group_type
+name: phenotype group type
 namespace: group_types_category
 def: "category of types of groups of organisms,
       defined by some aspect of their phenotype" []
@@ -175,28 +188,30 @@ is_a: GR0000 ! group_types_category
 
 [Term]
 id: GP1000
-name: morphology_group_type
+name: morphology group type
 namespace: group_types_category
 def: "group of organisms defined by an aspect of their morphology" []
 is_a: GP0000 ! phenotype_group_type
 
 [Term]
 id: GP1001
-name: gram_stain_group
+name: gram stain group
+property_value: EGC_label gram_stain
 namespace: group_type
 def: "organisms according to their reactivity to Gram stain" []
 is_a: GP1000 ! morphology_group_type
 
 [Term]
 id: GP2000
-name: metabolic_group_type
+name: metabolic group type
 namespace: group_types_category
 def: "group of organisms defined by an aspect of their metabolism" []
 is_a: GP0000 ! phenotype_group_type
 
 [Term]
 id: GP2001
-name: trophic_strategy_group
+name: trophic strategy group
+property_value: EGC_label trophic_strategy
 namespace: group_type
 def: "organisms characterized by their strategy for obtaining energy and/or
      organic compounds" []
@@ -204,7 +219,8 @@ is_a: GP2000 ! metabolic_group_type
 
 [Term]
 id: GP2002
-name: metabolic_trait_group
+name: metabolic trait group
+property_value: EGC_label metabolic
 namespace: group_type
 def: "organisms sharing a specific trait of their metabolism" []
 comment: "this excludes the traits included in GP2001"
@@ -212,7 +228,7 @@ is_a: GP2000 ! metabolic_group_type
 
 [Term]
 id: GP3000
-name: biological_interaction_group
+name: biological interaction group
 namespace: group_types_category
 def: "group of organisms defined by an aspect of their interaction (or lack
       thereof) with other organisms" []
@@ -220,7 +236,8 @@ is_a: GP0000 ! phenotype_group_type
 
 [Term]
 id: GP3001
-name: biological_interaction_kind_group
+name: biological interaction kind group
+property_value: EGC_label biological_interaction
 namespace: group_type
 def: "group of organisms by kind of interaction (or lack thereof)
       with other organisms" []
@@ -228,7 +245,8 @@ is_a: GP3000 ! biological_interaction_group
 
 [Term]
 id: GP3001
-name: biological_interaction_partner_group
+name: biological interaction partner group
+property_value: EGC_label biological_interaction_partner_taxonomy
 namespace: group_type
 def: "group of organisms by the taxonomy of another organism,
       partner of biological interaction" []
@@ -236,7 +254,8 @@ is_a: GP3000 ! biological_interaction_group
 
 [Term]
 id: GP3002
-name: resultive_disease_symptom_group
+name: resultive disease symptom group
+property_value: EGC_label resultive_disease_symptom
 namespace: group_type
 def: "group of organisms by the kind of disease or symptom that they
      cause (or do not cause) in another organism" []
@@ -244,7 +263,8 @@ is_a: GP3000 ! biological_interaction_group
 
 [Term]
 id: GP4000
-name: taxis_group
+name: taxis group
+property_value: EGC_label taxis
 namespace: group_type
 def: "organisms by their tendency to move or orient towards or against
      a given stimulus" []
@@ -252,7 +272,7 @@ is_a: GP0000 ! phenotype_group_type
 
 [Term]
 id: GL0000
-name: location_group_type
+name: location group type
 namespace: group_types_category
 def: "category of types of groups of organisms,
       defined by a location where they live" []
@@ -260,7 +280,8 @@ is_a: GR0000 ! group_types_category
 
 [Term]
 id: GL1000
-name: geographical_group
+name: geographical group
+property_value: EGC_label geographical
 namespace: group_type
 def: "organisms living in a specific named geographical area,
      of any kind and size" []
@@ -268,14 +289,15 @@ is_a: GL0000 ! location_group_type
 
 [Term]
 id: GL1001
-name: hydrothermal_vent_group
+name: hydrothermal vent group
+property_value: EGC_label hydrothermal_vent
 namespace: group_type
 def: "organisms living in a specific named hydrothermal vent" []
 is_a: GL1000 ! geographical_group
 
 [Term]
 id: GX0000
-name: derived_group_type
+name: derived group type
 namespace: group_types_category
 def: "category of types of groups of organisms,
       defined as derived from other definitions" []
@@ -283,7 +305,8 @@ is_a: GR0000 ! group_types_category
 
 [Term]
 id: GX1000
-name: inverted_group
+name: inverted group
+property_value: EGC_label inverted
 namespace: group_type
 def: "organisms which is not an instance of a specified group" []
 is_a: GX0000 ! derived_group_type
@@ -291,7 +314,8 @@ relationship: defined_by M0011 ! group_inversion_expression
 
 [Term]
 id: GX2000
-name: combined_group
+name: combined group
+property_value: EGC_label combined
 namespace: group_type
 def: "organisms which share or lack a number of conditions, which are described
      in other terms, and hereby combined by the set operations union and

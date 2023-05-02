@@ -4,11 +4,16 @@ import pronto
 def print_tree(term, ontology, level=0, prefix=""):
     children = [child for child in term.subclasses(1, with_self=False)]
     for index, child in enumerate(children):
+        egc_lbl = [x for x in child.annotations if x.property == 'EGC_label']
+        if egc_lbl:
+          egc_lbl = "(EGC: "+egc_lbl[0].resource+ ")"
+        else:
+          egc_lbl = ""
         if index == len(children) - 1:
-            print(f"{prefix}└── {child.id} {child.name}")
+            print(f"{prefix}└── {child.id} {child.name} {egc_lbl}")
             new_prefix = f"{prefix}    "
         else:
-            print(f"{prefix}├── {child.id} {child.name}")
+            print(f"{prefix}├── {child.id} {child.name} {egc_lbl}")
             new_prefix = f"{prefix}│   "
         print_tree(child, ontology, level + 1, new_prefix)
 
