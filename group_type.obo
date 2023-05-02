@@ -244,7 +244,7 @@ def: "group of organisms by kind of interaction (or lack thereof)
 is_a: GP3000 ! biological_interaction_group
 
 [Term]
-id: GP3001
+id: GP3002
 name: biological interaction partner group
 property_value: EGC_label biological_interaction_partner_taxonomy
 namespace: group_type
@@ -253,7 +253,7 @@ def: "group of organisms by the taxonomy of another organism,
 is_a: GP3000 ! biological_interaction_group
 
 [Term]
-id: GP3002
+id: GP3003
 name: resultive disease symptom group
 property_value: EGC_label resultive_disease_symptom
 namespace: group_type
