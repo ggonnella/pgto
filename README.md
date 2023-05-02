@@ -23,10 +23,10 @@ These are summarized in categories, which are children of the root node
 ``group type categories``.
 
 The categories include:
-- habitat requirement type
+- habitat group type
 - phenotype group type
 - location group type
-- phylogenetic group type
+- taxonomic group type
 - derived group type.
 
 Of these, the first 4 group types categories are for types of simple groups,
