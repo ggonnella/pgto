@@ -3,48 +3,48 @@ format-version: 1.2
 [Typedef]
 id: has_external_link_to
 name: has external link to
-def: an instance of the term must contain a link to an external
-     resource of the specified type []
+def: "an instance of the term must contain a link to an external
+     resource of the specified type" []
 
 [Typedef]
 id: usually_has_external_link_to
 name: usually has external link to
-def: an instance of the term should contain a link to an external
-     resource of the specified type []
+def: "an instance of the term should contain a link to an external
+     resource of the specified type" []
 comment: used when links of that type are generally available
 
 [Typedef]
 id: ideally_has_external_link_to
 name: ideally has external link to
-def: ideally, an instance of the term contains a link to an external
-     resource of the specified type []
+def: "ideally, an instance of the term contains a link to an external
+     resource of the specified type" []
 comment: used when links of that type are generally not available
 
 [Typedef]
 id: has_optional_type
 name: has optional type
-def: instances of the subject term can be classified as of type O, where
+def: "instances of the subject term can be classified as of type O, where
      O is an instance of the object term, but this classication system
-     does not apply in all cases
+     does not apply in all cases" []
 
 [Typedef]
 id: defined_by
 name: defined by
-def: instances of the subject term are defined by the mean
-     of instances of the object term []
+def: "instances of the subject term are defined by the mean
+     of instances of the object term" []
 
 [Term]
 id: M0001
 name: logical_expression
 namespace: metadata
-def: an expression involving one or muliple terms, the set operators
-     for intersection (and), union (or), and inversion (not) []
+def: "an expression involving one or muliple terms, the set operators
+     for intersection (and), union (or), and inversion (not)" []
 
 [Term]
 id: M0010
 name: groups_logical_expression
 namespace: metadata
-def: a logical expression whose terms are groups of organisms []
+def: "a logical expression whose terms are groups of organisms" []
 comment: avoiding nested group combinations can simplify applications
 is_a: M0001 ! logical_expression
 
@@ -52,131 +52,129 @@ is_a: M0001 ! logical_expression
 id: M0002
 name: groups_combination_expression
 namespace: metadata
-def: a combination of multiple organism groups, expressed in terms
-     or a logical expression, combining two or more other groups []
+def: "a combination of multiple organism groups, expressed in terms
+     or a logical expression, combining two or more other groups" []
 is_a: M0010 ! groups_logical_expression
 
 [Term]
 id: M0011
 name: group_inversion_expression
 namespace: metadata
-def: a group logical expression, containing only the negation symbol
-     and a single term (group) []
+def: "a group logical expression, containing only the negation symbol
+     and a single term (group)" []
 is_a: M0010 ! groups_logical_expression
 
 [Term]
 id: M0003
 name: external_resource
 namespace: metadata
-def: a source of definitions or information which is maintained
-     and made available by third-parties []
+def: "a source of definitions or information which is maintained
+     and made available by third-parties" []
 comment: only publicly available resources should be used
 
 [Term]
 id: M0004
 name: external_definition
 namespace: metadata
-def: a definition given in a document or database mantained and
-     made available by third-parties []
+def: "a definition given in a document or database maintained and
+     made available by third-parties" []
 is_a: M0003 ! external_resource
 
 [Term]
 id: M0005
 name: external_enumeration
 namespace: metadata
-def: a list of members of a class, given in a document
-     or database, maintained and made available by third-parties []
+def: "a list of members of a class, given in a document
+     or database, maintained and made available by third-parties" []
 is_a: M0003 ! external_resource
 
 [Term]
 id: M0006
 name: taxonomy_database
 namespace: metadata
-def: a database, which contain definitions of group of organisms
-     by their biological taxonomic classification []
+def: "a database, which contain definitions of group of organisms
+     by their biological taxonomic classification" []
 is_a: M0003 ! external_resource
 
 [Term]
 id: M0007
 name: strains_database
 namespace: metadata
-def: a database, containing the names of strains, their availability
-     in strain collections and other relevant information []
+def: "a database, containing the names of strains, their availability
+     in strain collections and other relevant information" []
 is_a: M0003 ! external_resource
 
 [Term]
 id: M0008
 name: NCBI_taxonomy_database
 namespace: metadata
-def: the taxonomy database maintained by NCBI []
+def: "the taxonomy database maintained by NCBI" []
 is_a: M0006 ! taxonomy_database
 
 [Term]
 id: M0009
 name: taxonomic_rank
 namespace: metadata
-def: name of one of the hierarchical levels of a taxonomic classification
-comment: example: species, genus, family;
-         not all taxonomic group have a specific rank
+def: "name of one of the hierarchical levels of a taxonomic classification" []
+comment: example: species, genus, family; not all taxonomic group have a specific rank
 
 [Term]
 id: GC0001
 name: group_types_category
 namespace: hierarchy_root
-def: higher level definition, which includes one or multiple types of groups
-     or biological organisms []
+def: "higher level definition, which includes one or multiple types of groups
+     or biological organisms" []
 
 [Term]
 id: GC0002
 name: habitat_requirement_type
 namespace: group_types_category
-def: organisms classification by required conditions in their habitats []
+def: "organisms classification by required conditions in their habitats" []
 is_a: GC0001 ! group_types_category
 
 [Term]
 id: GC0003
 name: phenotype_group_type
 namespace: group_types_category
-def: groups of organisms by one particular aspect of their phenotype []
-comment: this does not include groups by characteristics of the habitat such
-         as temperature, salinity, pH, etc, which are included instead
-         in habitat_requirement_type (GC0002)
+def: "groups of organisms by one particular aspect of their phenotype" []
+comment: this does not include groups by characteristics of \
+         the habitat such as temperature, salinity, pH, etc, \
+         which are included instead in habitat_requirement_type (GC0002)
 is_a: GC0001 ! group_types_category
 
 [Term]
 id: GC0004
 name: location_group_type
 namespace: group_types_category
-def: groups of organisms by the location where their live []
+def: "groups of organisms by the location where their live" []
 is_a: GC0001 ! group_types_category
 
 [Term]
 id: GC0005
 name: derived_group_type
 namespace: group_types_category
-def: definition of groups of organisms derived by the definition of one or
-     multiple other groups []
+def: "definition of groups of organisms derived by the definition of one or
+     multiple other groups" []
 is_a: GC0001 ! group_types_category
 
 [Term]
 id: GC0006
 name: phylogenetic_group_type
 namespace: group_types_category
-def: groups of organisms by a currently or historically inferred
-     phylogenetic relationship []
+def: "groups of organisms by a currently or historically inferred
+     phylogenetic relationship" []
 is_a: GC0001 ! group_types_category
 
 [Term]
 id: GG0001
 name: taxonomic
 namespace: group_type
-def: organisms belonging to a group with common phylogenetic origin,
+def: "organisms belonging to a group with common phylogenetic origin,
      as defined by an official taxonomy organisation or by
-     a commonly used taxonomy database []
-comment: ideally represents a monophiletic group or organisms,
-     a clade
-relationship: has_external_link_to M0006 {cardinality:1} ! taxonomy_database
-              ! recommended: M0008 ! NCBI_taxonomy_database
+     a commonly used taxonomy database" []
+comment: ideally represents a monophiletic group or organisms, a clade
+relationship: has_external_link_to M0006 ! taxonomy_database
+  comment: recommended: M0008 ! NCBI_taxonomy_database
 relationship: has_optional_type M0009 ! taxonomic_rank
 is_a: GC0006 ! phylogenetic_group_type
 
@@ -184,12 +182,12 @@ is_a: GC0006 ! phylogenetic_group_type
 id: GG0002
 name: strain
 namespace: group_type
-def: prokaryotic organisms which were cultivated in a biological laboratory
-     starting from a common ancestor []
-comment: may be assigned or not to a specific taxonomic group; it should
-         be linked to NCBI taxonomy, if the strain itself is included there; to
-         the species, if the strain is assigned to a species, but not included
-         in NCBI taxonomy; to the genus, if the strain is not included in NCBI
+def: "prokaryotic organisms which were cultivated in a biological laboratory
+     starting from a common ancestor" []
+comment: may be assigned or not to a specific taxonomic group; it should \
+         be linked to NCBI taxonomy, if the strain itself is included there; to \
+         the species, if the strain is assigned to a species, but not included \
+         in NCBI taxonomy; to the genus, if the strain is not included in NCBI \
          taxonomy and not assigned to a species, but assigned to a genus
 relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
 relationship: usually_has_external_link_to M0007 ! strains_database
@@ -199,11 +197,11 @@ is_a: GC0006 ! phylogenetic_group_type
 id: GG0004
 name: metagenomic_assembled
 namespace: group_type
-def: organism known only because its genome was assembled from a metagenome
-comment: may be assigned or not to a specific taxonomic group; it should
-         be linked to NCBI taxonomy, if the strain itself is included there; to
-         the species, if the strain is assigned to a species, but not included
-         in NCBI taxonomy; to the genus, if the strain is not included in NCBI
+def: "organism known only because its genome was assembled from a metagenome" []
+comment: may be assigned or not to a specific taxonomic group; it should \
+         be linked to NCBI taxonomy, if the strain itself is included there; to \
+         the species, if the strain is assigned to a species, but not included \
+         in NCBI taxonomy; to the genus, if the strain is not included in NCBI \
          taxonomy and not assigned to a species, but assigned to a genus
 relationship: usually_has_external_link_to M0008 ! NCBI_taxonomy_database
 relationship: usually_has_external_link_to M0007 ! strains_database
@@ -213,10 +211,9 @@ is_a: GC0006 ! location
 id: GG0003
 name: paraphyletic
 namespace: group_type
-def: named group of strains or species or other taxa, which which do not
-     represent a monophyetic group []
-comment: usually historically a taxonomic group,
-        but not recognized anymore as such
+def: "named group of strains or species or other taxa, which which do not
+     represent a monophyetic group" []
+comment: usually historically a taxonomic group, but not recognized anymore as such
 relationship: usually_has_external_link_to M0004 ! external_definition
 relationship: ideally_has_external_link_to M0005 ! external_enumeration
 is_a: GC0006 ! phylogenetic_group_type
@@ -225,8 +222,8 @@ is_a: GC0006 ! phylogenetic_group_type
 id: GL0001
 name: geographical
 namespace: group_type
-def: organisms living in a specific named geographical area,
-     of any kind and size []
+def: "organisms living in a specific named geographical area,
+     of any kind and size" []
 relationship: usually_has_external_link_to M0004 ! external_definition
 relationship: ideally_has_external_link_to M0005 ! external_enumeration
 is_a: GC0004 ! location_group_type
@@ -235,7 +232,7 @@ is_a: GC0004 ! location_group_type
 id: GL0002
 name: habitat
 namespace: group_type
-def: organisms living in a specific kind of environment []
+def: "organisms living in a specific kind of environment" []
 relationship: usually_has_external_link_to M0004 ! external_definition
 relationship: ideally_has_external_link_to M0005 ! external_enumeration
 is_a: GC0004 ! location_group_type
@@ -244,8 +241,8 @@ is_a: GC0004 ! location_group_type
 id: GH0001
 name: nutrients_level_requirement
 namespace: group_type
-def: organisms which require a given quantitive level of availability of
-     nutrients []
+def: "organisms which require a given quantitive level of availability of
+     nutrients" []
 comment: e.g. oligotrophic, copiotrophic
 is_a: GC0002 ! habitat_requirement_type
 
@@ -253,96 +250,96 @@ is_a: GC0002 ! habitat_requirement_type
 id: GH0002
 name: specific_nutrient_availability
 namespace: group_type
-def: organisms by their requirement of availability of a specific nutrient []
+def: "organisms by their requirement of availability of a specific nutrient" []
 is_a: GC0002 ! habitat_requirement_type
 
 [Term]
 id: GH0003
 name: O2_requirement
 namespace: group_type
-def: organisms by requirement of molecular oxygen level in their habitat []
+def: "organisms by requirement of molecular oxygen level in their habitat" []
 is_a: GC0002 ! habitat_requirement_type
 
 [Term]
 id: GH0004
 name: salinity_requirement
 namespace: group_type
-def: organisms by requirement of a salinity level in their habitats []
+def: "organisms by requirement of a salinity level in their habitats" []
 is_a: GC0002 ! habitat_requirement_type
 
 [Term]
 id: GH0005
 name: pH_requirement
 namespace: group_type
-def: organisms by requirement of a pH range in their habitats []
+def: "organisms by requirement of a pH range in their habitats" []
 is_a: GC0002 ! habitat_requirement_type
 
 [Term]
 id: GH0006
 name: temperature_requirement
 namespace: group_type
-def: organisms by requirement of a temperature range in their habitats []
+def: "organisms by requirement of a temperature range in their habitats" []
 is_a: GC0002 ! habitat_requirement_type
 
 [Term]
 id: GP0001
 name: biological_interaction
 namespace: group_type
-def: organisms by kind of interaction (or lack thereof) with other organisms []
+def: "organisms by kind of interaction (or lack thereof) with other organisms" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GP0002
 name: taxis
 namespace: group_type
-def: organisms by their tendency to move or orient towards or against
-     a given stimulus []
+def: "organisms by their tendency to move or orient towards or against
+     a given stimulus" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GP0003
 name: metabolic
 namespace: group_type
-def: organisms sharing a specific trait of their metabolism []
+def: "organisms sharing a specific trait of their metabolism" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GP0004
 name: gram_stain
 namespace: group_type
-def: organisms according to their reactivity to Gram stain []
+def: "organisms according to their reactivity to Gram stain" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GP0005
 name: trophic_strategy
 namespace: group_type
-def: organisms which share the same strategy for obtaining energy and/or
-     organic compounds []
+def: "organisms which share the same strategy for obtaining energy and/or
+     organic compounds" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GP0006
 name: cultiviability
 namespace: group_type
-def: organisms by the ability to cultivate them in a laboratory []
+def: "organisms by the ability to cultivate them in a laboratory" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GP0007
 name: resultive_disease_symptom
 namespace: group_type
-def: patogenic organisms by the kind of disease or symptom that they
-     cause (or lack thereof) []
+def: "patogenic organisms by the kind of disease or symptom that they
+     cause (or lack thereof)" []
 is_a: GC0003 ! phenotype_group_type
 
 [Term]
 id: GX0001
 name: combined_group
 namespace: group_type
-def: organisms which share or lack a number of conditions, which are described
+def: "organisms which share or lack a number of conditions, which are described
      in other terms, and hereby combined by the set operations union and
-     intersection []
+     intersection" []
 is_a: GC0005 ! derived_group_type
 relationship: defined_by M0002 ! groups_combination_expression
 
@@ -350,6 +347,6 @@ relationship: defined_by M0002 ! groups_combination_expression
 id: GX0002
 name: inverted_group
 namespace: group_type
-def: organisms which is not an instance of a specified group []
+def: "organisms which is not an instance of a specified group" []
 is_a: GC0005 ! derived_group_type
 relationship: defined_by M0011 ! group_inversion_expression
