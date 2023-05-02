@@ -2,7 +2,7 @@
 import pronto
 
 def print_tree(term, ontology, level=0, prefix=""):
-    children = [child for child in term.subclasses(with_self=False)]
+    children = [child for child in term.subclasses(1, with_self=False)]
     for index, child in enumerate(children):
         if index == len(children) - 1:
             print(f"{prefix}└── {child.id} {child.name}")
