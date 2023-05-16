@@ -82,10 +82,10 @@ is_a: GR0000 ! group_types_category
 
 [Term]
 id: GH1100
-name: named habitat group
-property_value: EGC_label habitat
+name: biome group
+property_value: EGC_label biome
 namespace: group_type
-def: "group of organisms living in a specific, named, kind of environment" []
+def: "group of organisms living in a specific type of environment" []
 is_a: GH0000 ! habitat_group_type
 
 [Term]
@@ -93,9 +93,9 @@ id: GH1101
 name: host anatomic feature group
 property_value: EGC_label host_anatomic_feature
 namespace: group_type
-def: "group of organisms living in a named anatomic feature of a host
+def: "group of organisms living in an anatomic feature of a host
       organism" []
-is_a: GH1100 ! named_habitat_group
+is_a: GH1100 ! biome_group
 
 [Term]
 id: GH2000
