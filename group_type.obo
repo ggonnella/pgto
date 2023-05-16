@@ -115,19 +115,20 @@ is_a: GH2000 ! environmental_parameter_group
 
 [Term]
 id: GH2101
-name: nutrients level requirement group
+name: nutrients level requirement or preference group
 namespace: group_type
-property_value: EGC_label nutrients_level_requirement
-def: "group of organisms which require a given general level of availability of
-     nutrients" []
+property_value: EGC_label habitat_nutrients_level
+def: "group of organisms which require or prefer a given general level of
+      availability of nutrients" []
 is_a: GH2100 ! nutritional_parameter_group
 
 [Term]
 id: GH2102
-name: specific nutrient requirement group
-property_value: EGC_label specific_nutrient_availability
+name: specific compound level group
+property_value: EGC_label compound_level
 namespace: group_type
-def: "group of organisms which require a specific nutrient" []
+def: "group of organisms which require or prefer a given level of a
+      specific chemical compound" []
 is_a: GH2100 ! nutritional_parameter_group
 
 [Term]
@@ -140,34 +141,37 @@ is_a: GH2000 ! environmental_parameter_group
 
 [Term]
 id: GH2201
-name: O2 requirement group
-property_value: EGC_label O2_requirement
+name: O2 requirement or preference group
+property_value: EGC_label habitat_O2
 namespace: group_type
-def: "organisms by requirement of molecular oxygen level in their habitat" []
+def: "organisms by requirement or preference of molecular oxygen
+      level in their habitat" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH2202
-name: salinity requirement group
-property_value: EGC_label salinity_requirement
+name: salinity requirement or preference group
+property_value: EGC_label habitat_salinity
 namespace: group_type
-def: "organisms by requirement of a salinity level in their habitats" []
+def: "organisms by requirement or preference of a salinity level
+      in their habitats" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH2203
-name: pH requirement group
-property_value: EGC_label pH_requirement
+name: pH requirement or preference group
+property_value: EGC_label habitat_pH
 namespace: group_type
-def: "organisms by requirement of a pH range in their habitats" []
+def: "organisms by requirement or preference of a pH range in their habitats" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
 id: GH2204
-name: temperature requirement group
-property_value: EGC_label temperature_requirement
+name: temperature requirement or preference group
+property_value: EGC_label habitat_temperature
 namespace: group_type
-def: "organisms by requirement of a temperature range in their habitats" []
+def: "organisms by requirement or preference of a temperature range
+      in their habitats" []
 is_a: GH2200 ! physical_chemical_parameter_group
 
 [Term]
@@ -210,8 +214,8 @@ is_a: GP0000 ! phenotype_group_type
 
 [Term]
 id: GP2001
-name: trophic strategy group
-property_value: EGC_label trophic_strategy
+name: primary metabolism group
+property_value: EGC_label primary_metabolism
 namespace: group_type
 def: "organisms characterized by their strategy for obtaining energy and/or
      organic compounds" []
@@ -220,7 +224,7 @@ is_a: GP2000 ! metabolic_group_type
 [Term]
 id: GP2002
 name: metabolic trait group
-property_value: EGC_label metabolic
+property_value: EGC_label metabolic_trait
 namespace: group_type
 def: "organisms sharing a specific trait of their metabolism" []
 comment: "this excludes the traits included in GP2001"
@@ -236,17 +240,17 @@ is_a: GP0000 ! phenotype_group_type
 
 [Term]
 id: GP3001
-name: biological interaction kind group
-property_value: EGC_label biological_interaction
+name: biological interaction class group
+property_value: EGC_label biointeraction_class
 namespace: group_type
-def: "group of organisms by kind of interaction (or lack thereof)
+def: "group of organisms by class of interaction (or lack thereof)
       with other organisms" []
 is_a: GP3000 ! biological_interaction_group
 
 [Term]
 id: GP3002
 name: biological interaction partner group
-property_value: EGC_label biological_interaction_partner_taxonomy
+property_value: EGC_label biointeraction_partner
 namespace: group_type
 def: "group of organisms by the taxonomy of another organism,
       partner of biological interaction" []
@@ -254,10 +258,10 @@ is_a: GP3000 ! biological_interaction_group
 
 [Term]
 id: GP3003
-name: resultive disease symptom group
-property_value: EGC_label resultive_disease_symptom
+name: biological interaction resultant disease or symptom group
+property_value: EGC_label biointeraction_outcome
 namespace: group_type
-def: "group of organisms by the kind of disease or symptom that they
+def: "group of organisms by the disease or symptom that they
      cause (or do not cause) in another organism" []
 is_a: GP3000 ! biological_interaction_group
 
@@ -290,7 +294,7 @@ is_a: GL0000 ! location_group_type
 [Term]
 id: GL1001
 name: hydrothermal vent group
-property_value: EGC_label hydrothermal_vent
+property_value: EGC_label geographical
 namespace: group_type
 def: "organisms living in a specific named hydrothermal vent" []
 is_a: GL1000 ! geographical_group
@@ -439,5 +443,5 @@ id: M0009
 name: taxonomic_rank
 namespace: metadata
 def: "name of one of the hierarchical levels of a taxonomic classification" []
-comment: example: species, genus, family; not all taxonomic group have a specific rank
+comment: eg: species, genus, ...; not all taxonomic group have a specific rank
 
